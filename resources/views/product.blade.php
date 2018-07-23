@@ -120,11 +120,14 @@
                                         <tbody>
                                         @php $i = 1; @endphp
                                         @foreach($products as $product)
+                                            @php
+                                                $product_supplier  = App\product::find($product['id'])->supplier()->associate(App\Supplier::find($product['supplier_id']));
+                                            @endphp
                                             <tr>
                                                 <td>{{$i++}}</td>
                                                 <td>{{$product['product_name']}}</td>
                                                 <td>{{$product['product_price']}}</td>
-                                                <td>{{$product['product_name']}}</td>
+                                                <td>{{$product_supplier->supplier['supplier_name']}}</td>
                                                 <td><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editmodal{{$product['id']}}"><i class="fa fa-edit"></i></button>
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletemodal{{$product['id']}}"><i class="fa fa-trash"></i></button>
                                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewmodal{{$product['id']}}"><i class="fa fa-search"></i></button>
