@@ -7,101 +7,15 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-header">Create Product</div>
-                                    <div class="card-body card-block">
-                                        <form action="{{ route('product') }}" method="post">
-                                        @csrf
-                                        
-                                            <div class="form-group">
-                                                @if (\Session::has('row-1'))
-                                                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
-                                                    <span class="badge badge-pill badge-success">Success</span>
-                                                    {{ \Session::get('row-1') }}
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                @endif
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-user"></i>
-                                                    </div>
-                                                    <input type="text" name="product_name" placeholder="Name" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-envelope"></i>
-                                                    </div>
-                                                    <input type="text" name="product_price" placeholder="Price" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-asterisk"></i>
-                                                    </div>
-                                                    <select type="text" name="categorie_id" class="form-control" required>
-                                                        <option value="">Select Categorie</option>
-                                                        @foreach($categories as $categorie)
-                                                        <option value="{{$categorie['id']}}">{{$categorie['categorie_name']}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-user"></i>
-                                                    </div>
-                                                    <select type="text" name="supplier_id" class="form-control" required>
-                                                        <option value="">Select Supplier</option>
-                                                        @foreach($suppliers as $supplier)
-                                                        <option value="{{$supplier['id']}}">{{$supplier['supplier_name']}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-user"></i>
-                                                    </div>
-                                                    <input type="text" name="product_qty" placeholder="Qty" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-user"></i>
-                                                    </div>
-                                                    <input type="text" name="product_serial_number" placeholder="Serial Number" class="form-control" required>
-                                                </div>
-                                            </div> -->
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-user"></i>
-                                                    </div>
-                                                    <textarea type="text" name="product_info" placeholder="Information" rows="5" class="form-control" required></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-actions form-group">
-                                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                            <div class="col-lg-9">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Product</button>
                                 </div>
-                            </div>
-                            <div class="col-lg-8">
                                 <div class="table-responsive table--no-card m-b-30">
-                                    @if (\Session::has('row-2'))
+                                    @if (\Session::has('info'))
                                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
                                         <span class="badge badge-pill badge-success">Success</span>
-                                        {{ \Session::get('row-2') }}
+                                        {{ \Session::get('info') }}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -170,7 +84,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
+                                        <i class="fa fa-money"></i>
                                     </div>
                                     <input type="text" name="product_price" class="form-control" value="{{$product['product_price']}}" required>
                                 </div>
@@ -178,7 +92,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
+                                        <i class="fa fa-tags"></i>
                                     </div>
                                     <select type="text" name="categorie_id" class="form-control" required>
                                         <option value="">Select Categorie</option>
@@ -196,7 +110,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
+                                        <i class="fa fa-gear"></i>
                                     </div>
                                     <select type="text" name="supplier_id" class="form-control" required>
                                         <option value="">Select Supplier</option>
@@ -214,7 +128,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
+                                        <i class="fa fa-table"></i>
                                     </div>
                                     <input type="text" name="product_qty" class="form-control" value="{{$product['product_qty']}}" required>
                                 </div>
@@ -222,7 +136,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
+                                        <i class="fa fa-info"></i>
                                     </div>
                                     <textarea type="text" name="product_info" class="form-control" rows="5" required>{{$product['product_info']}}</textarea>
                                 </div>
@@ -277,7 +191,6 @@
                         </div>
                         <div class="modal-body">
                             <div class="top-campaign">
-                                <h1 class="title-3 m-b-30">View Product</h3>
                                 <div class="table-responsive">
                                     <table class="table table-top-campaign">
                                         <tbody>
@@ -318,6 +231,86 @@
                 </div>
             </div>
             @endforeach
+
+            <div class="modal fade" id="createmodal" tabindex="-1" role="dialog" aria-labelledby="mediummodalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mediummodalLabel">Create Product</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('product') }}" method="post">
+                            @csrf
+                            
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" name="product_name" placeholder="Name" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-money"></i>
+                                        </div>
+                                        <input type="text" name="product_price" placeholder="Price" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-tags"></i>
+                                        </div>
+                                        <select type="text" name="categorie_id" class="form-control" required>
+                                            <option value="">Select Categorie</option>
+                                            @foreach($categories as $categorie)
+                                            <option value="{{$categorie['id']}}">{{$categorie['categorie_name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-gear"></i>
+                                        </div>
+                                        <select type="text" name="supplier_id" class="form-control" required>
+                                            <option value="">Select Supplier</option>
+                                            @foreach($suppliers as $supplier)
+                                            <option value="{{$supplier['id']}}">{{$supplier['supplier_name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-table"></i>
+                                        </div>
+                                        <input type="text" name="product_qty" placeholder="Qty" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-info"></i>
+                                        </div>
+                                        <textarea type="text" name="product_info" placeholder="Information" rows="5" class="form-control" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-actions form-group">
+                                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- end modal -->
             @endsection
 

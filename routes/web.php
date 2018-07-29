@@ -26,6 +26,8 @@ Route::post('/categorie/destroy/{id}', 'CategorieController@destroy');
 
 Route::get('/supplier', 'SupplierController@index')->name('supplier');
 Route::post('/supplier', 'SupplierController@store');
+Route::post('/supplier/update/{id}', 'SupplierController@update');
+Route::post('/supplier/destroy/{id}', 'SupplierController@destroy');
 
 Route::get('/product', 'ProductController@index')->name('product');
 Route::post('/product', 'ProductController@store');

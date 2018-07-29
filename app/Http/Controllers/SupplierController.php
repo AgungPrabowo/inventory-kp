@@ -43,7 +43,7 @@ class SupplierController extends Controller
         $data->supplier_phone   = $request->supplier_phone;
         $data->supplier_fax     = $request->supplier_fax;
         $data->save();
-        return redirect()->route('supplier')->with('success', 'Supplier has been added');
+        return redirect()->route('supplier')->with('info', 'Supplier has been added');
     }
 
     /**
@@ -77,7 +77,14 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Supplier::find($id);
+        $data->supplier_name    = $request->get('supplier_name');
+        $data->supplier_address = $request->get('supplier_address');
+        $data->supplier_email   = $request->get('supplier_email');
+        $data->supplier_phone   = $request->get('supplier_phone');
+        $data->supplier_fax     = $request->get('supplier_fax');
+        $data->save();
+        return redirect()->route('supplier')->with('info', 'Supplier has been update');
     }
 
     /**
@@ -88,6 +95,8 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Supplier::find($id);
+        $data->delete();
+        return redirect()->route('supplier')->with('info', 'Supplier has been delete');
     }
 }

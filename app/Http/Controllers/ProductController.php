@@ -48,7 +48,7 @@ class ProductController extends Controller
         $data->product_qty          = $request->product_qty;
         $data->product_info         = $request->product_info;
         $data->save();
-        return redirect()->route('product')->with('row-1', 'Product has been added');
+        return redirect()->route('product')->with('info', 'Product has been added');
     }
 
     /**
@@ -90,7 +90,7 @@ class ProductController extends Controller
         $data->product_qty          = $request->get('product_qty');
         $data->product_info         = $request->get('product_info');
         $data->save();
-        return redirect()->route('product')->with('row-2', 'Product has been Update');
+        return redirect()->route('product')->with('info', 'Product has been Update');
     }
 
     /**
@@ -103,6 +103,6 @@ class ProductController extends Controller
     {
         $data = Product::find($id);
         $data->delete();
-        return redirect()->route('product')->with('row-2', 'Product has been delete');
+        return redirect()->route('product')->with('info', 'Product has been delete');
     }
 }
