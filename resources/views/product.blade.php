@@ -7,7 +7,7 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-9">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Product</button>
                                 </div>
@@ -40,7 +40,7 @@
                                             <tr>
                                                 <td>{{$i++}}</td>
                                                 <td>{{$product['product_name']}}</td>
-                                                <td>{{$product['product_price']}}</td>
+                                                <td>Rp. {{number_format($product['product_price'], 0, '', '.')}}</td>
                                                 <td>{{$product_supplier->supplier['supplier_name']}}</td>
                                                 <td><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editmodal{{$product['id']}}"><i class="fa fa-edit"></i></button>
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletemodal{{$product['id']}}"><i class="fa fa-trash"></i></button>

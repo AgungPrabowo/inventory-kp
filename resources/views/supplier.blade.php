@@ -7,9 +7,9 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-9">
+                            <div class="col-lg-12">
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Product</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Supplier</button>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-30">
                                     @if (\Session::has('info'))

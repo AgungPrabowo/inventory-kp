@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col-lg-9">
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Product</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Categorie</button>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-30">
                                 @if (\Session::has('info'))
@@ -117,7 +117,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mediummodalLabel">Create Supplier</h5>
+                            <h5 class="modal-title" id="mediummodalLabel">Create Categorie</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

@@ -11,6 +11,17 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Categorie::class)->create();
+        DB::table('categories')->insert([
+            [
+                'categorie_name' => 'Peralatan Hematologi dan Patologi',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'categorie_name' => 'Peralatan Kimia Klinik dan Toksikologi Klinik',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ]);
     }
 }
