@@ -10,6 +10,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Product</button>
+                                    <a href="{{ URL::to('/product/printProducts') }}" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Print Product</a>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-30">
                                     @if (\Session::has('info'))
@@ -27,6 +28,7 @@
                                                 <th>id</th>
                                                 <th>Name</th>
                                                 <th>Price</th>
+                                                <th>Qty</th>
                                                 <th>Supplier</th>
                                                 <th colspan="3">Action</th>
                                             </tr>
@@ -41,6 +43,7 @@
                                                 <td>{{$i++}}</td>
                                                 <td>{{$product['product_name']}}</td>
                                                 <td>Rp. {{number_format($product['product_price'], 0, '', '.')}}</td>
+                                                <td>{{$product['product_qty']}}</td>
                                                 <td>{{$product_supplier->supplier['supplier_name']}}</td>
                                                 <td><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editmodal{{$product['id']}}"><i class="fa fa-edit"></i></button>
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletemodal{{$product['id']}}"><i class="fa fa-trash"></i></button>

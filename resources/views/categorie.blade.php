@@ -10,6 +10,7 @@
                             <div class="col-lg-9">
                                 <div class="form-group">
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Categorie</button>
+                                    <!-- <a href="{{ URL::to('/categorie/printCategorie') }}" target="_blank" class="btn btn-primary"><i class="fa  fa-plus-square"></i> Print Categorie</a> -->
                                 </div>
                                 <div class="table-responsive table--no-card m-b-30">
                                 @if (\Session::has('info'))

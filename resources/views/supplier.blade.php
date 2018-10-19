@@ -10,6 +10,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Supplier</button>
+                                    <a href="{{ URL::to('/supplier/printSuppliers') }}" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Print Suppliers</a>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-30">
                                     @if (\Session::has('info'))
@@ -40,7 +41,9 @@
                                                 <td>{{$supplier['supplier_email']}}</td>
                                                 <td>{{$supplier['supplier_phone']}}</td>
                                                 <td><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editmodal{{$supplier['id']}}"><i class="fa fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletemodal{{$supplier['id']}}"><i class="fa fa-trash"></i></button></td>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletemodal{{$supplier['id']}}"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewmodal{{$supplier['id']}}"><i class="fa fa-search"></i></button>
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -142,6 +145,49 @@
                                 <button type="submit" class="btn btn-danger">Confirm</button>
                             </div>
                         </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="viewmodal{{$supplier['id']}}" tabindex="-1" role="dialog" aria-labelledby="mediummodalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mediummodalLabel">View Supplier</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="top-campaign">
+                                <div class="table-responsive">
+                                    <table class="table table-top-campaign">
+                                        <tbody>
+                                            <tr>
+                                                <td>1. Name</td>
+                                                <td>{{$supplier['supplier_name']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2. Address</td>
+                                                <td>{{$supplier['supplier_address']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3. Email</td>
+                                                <td>{{$supplier['supplier_email']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4. Phone</td>
+                                                <td>{{$supplier['supplier_phone']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5. Fax</td>
+                                                <td>{{$supplier['supplier_fax']}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

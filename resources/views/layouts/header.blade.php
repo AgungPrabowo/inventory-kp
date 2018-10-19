@@ -3,7 +3,7 @@
             <aside class="menu-sidebar d-none d-lg-block">
                 <div class="logo">
                     <a href="#">
-                        <img src="images/icon/logo.png" alt="Cool Admin" />
+                        <!-- <img src="images/icon/logo.png" alt="Cool Admin" /> -->
                     </a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
@@ -11,11 +11,11 @@
                         <ul class="list-unstyled navbar__list">
                             <li class="active">
                                 <a href="{{ route('product') }}">
-                                    <i class="far fa-check-square"></i>Products</a>
+                                    <i class="fas fa-list-ul"></i>Products</a>
                             </li>
                             <li>
                                 <a href="{{ route('categorie') }}">
-                                    <i class="fas fa-chart-bar"></i>Categories</a>
+                                    <i class="fas fa-book"></i>Categories</a>
                             </li>
                             <li>
                                 <a href="{{ route('supplier') }}">

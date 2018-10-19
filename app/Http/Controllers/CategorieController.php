@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categorie;
+use PDF;
 
 class CategorieController extends Controller
 {
@@ -90,5 +91,13 @@ class CategorieController extends Controller
         $data = Categorie::find($id);
         $data->delete();
         return redirect()->route('categorie')->with('info', 'Categorie has been delete');;
+    }
+
+    public function printPDF()
+    {
+        $data = Categorie::get();
+
+        $pdf = PDF::loadView('categoriePDF', compact('data'));
+        return $pdf->download('reportCategorie.pdf');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Categorie;
 use App\Supplier;
+use PDF;
 
 class ProductController extends Controller
 {
@@ -104,5 +105,13 @@ class ProductController extends Controller
         $data = Product::find($id);
         $data->delete();
         return redirect()->route('product')->with('info', 'Product has been delete');
+    }
+
+    public function printPDF()
+    {
+        $data = Product::get();
+
+        $pdf = PDF::loadView('productPDF', compact('data'));
+        return $pdf->download('reportProducts.pdf');
     }
 }

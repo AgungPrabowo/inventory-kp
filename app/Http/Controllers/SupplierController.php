@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Supplier;
+use PDF;
 
 class SupplierController extends Controller
 {
@@ -99,4 +100,13 @@ class SupplierController extends Controller
         $data->delete();
         return redirect()->route('supplier')->with('info', 'Supplier has been delete');
     }
+
+    public function printPDF()
+    {
+        $data = Supplier::get();
+
+        $pdf = PDF::loadView('supplierPDF', compact('data'));
+        return $pdf->download('reportSuppliers.pdf');
+    }
+
 }
