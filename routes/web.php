@@ -36,3 +36,13 @@ Route::post('/product', 'ProductController@store');
 Route::post('/product/update/{id}', 'ProductController@update');
 Route::post('/product/destroy/{id}', 'ProductController@destroy');
 Route::get('/product/printProducts', 'ProductController@printPDF');
+
+Route::get('/purchase', 'PurchasesController@index')->name('purchase');
+Route::post('/purchase', 'PurchasesController@store');
+Route::post('/purchase/destroy/{id}', 'PurchasesController@destroy');
+Route::post('/purchase/printPurchases', 'PurchasesController@printPDF')->name('purchasePDF');
+
+Route::get('/order', 'OrderController@index')->name('order');
+Route::post('/order', 'OrderController@store');
+Route::post('/order/destroy/{id}', 'OrderController@destroy');
+Route::post('/order/printOrder', 'OrderController@printPDF')->name('orderPDF');

@@ -48,8 +48,10 @@ class ProductController extends Controller
         $data->supplier_id          = $request->supplier_id;
         $data->product_qty          = $request->product_qty;
         $data->product_info         = $request->product_info;
+        $data->product_packaging    = $request->product_packaging1.' '.$request->product_packaging2;
+        $data->product_unit         = $request->product_unit;
         $data->save();
-        return redirect()->route('product')->with('info', 'Product has been added');
+        return redirect()->route('product')->with('info', 'Produk berhasil dibuat');
     }
 
     /**
@@ -90,8 +92,10 @@ class ProductController extends Controller
         $data->supplier_id          = $request->get('supplier_id');
         $data->product_qty          = $request->get('product_qty');
         $data->product_info         = $request->get('product_info');
+        $data->product_packaging    = $request->get('product_packaging1').' '.$request->get('product_packaging2');
+        $data->product_unit         = $request->get('product_unit');
         $data->save();
-        return redirect()->route('product')->with('info', 'Product has been Update');
+        return redirect()->route('product')->with('info', 'Produk berhasil diedit');
     }
 
     /**
@@ -104,7 +108,7 @@ class ProductController extends Controller
     {
         $data = Product::find($id);
         $data->delete();
-        return redirect()->route('product')->with('info', 'Product has been delete');
+        return redirect()->route('product')->with('info', 'Produk telah dihapus');
     }
 
     public function printPDF()
@@ -112,6 +116,6 @@ class ProductController extends Controller
         $data = Product::get();
 
         $pdf = PDF::loadView('productPDF', compact('data'));
-        return $pdf->download('reportProducts.pdf');
+        return $pdf->download('Daftar Produk.pdf');
     }
 }

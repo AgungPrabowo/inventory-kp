@@ -20,6 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('product_name', 100);
             $table->integer('product_price');
             $table->integer('product_qty');
+            $table->string('product_unit');
+            $table->string('product_packaging');
             $table->string('product_info', 255)->nullable();
             $table->string('product_serial_number', 100)->nullable();
             $table->timestamps();

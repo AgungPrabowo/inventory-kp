@@ -9,8 +9,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Create Product</button>
-                                    <a href="{{ URL::to('/product/printProducts') }}" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Print Product</a>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createmodal"><i class="fa  fa-plus-square"></i> Tambah Produk</button>
+                                    <a href="{{ URL::to('/product/printProducts') }}" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Cetak</a>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-30">
                                     @if (\Session::has('info'))
@@ -26,8 +26,8 @@
                                         <thead>
                                             <tr>
                                                 <th>id</th>
-                                                <th>Name</th>
-                                                <th>Price</th>
+                                                <th>Nama</th>
+                                                <th>Harga</th>
                                                 <th>Qty</th>
                                                 <th>Supplier</th>
                                                 <th colspan="3">Action</th>
@@ -97,8 +97,8 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-tags"></i>
                                     </div>
-                                    <select type="text" name="categorie_id" class="form-control" required>
-                                        <option value="">Select Categorie</option>
+                                    <select type="text" name="categorie_id" class="form-control">
+                                        <option value="">Pilih Kategori</option>
                                         @foreach($categories as $categorie)
                                         @if($categorie['id'] == $product['categorie_id'])
                                             @php $selected = 'selected'; @endphp
@@ -115,8 +115,8 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-gear"></i>
                                     </div>
-                                    <select type="text" name="supplier_id" class="form-control" required>
-                                        <option value="">Select Supplier</option>
+                                    <select type="text" name="supplier_id" class="form-control">
+                                        <option value="">Pilih Supplier</option>
                                         @foreach($suppliers as $supplier)
                                         @if($supplier['id'] == $product['supplier_id'])
                                             @php $selected = 'selected'; @endphp
@@ -131,6 +131,53 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">
+                                        <i class="fa fa-gear"></i>
+                                    </div>
+                                    <select type="text" name="product_unit" class="form-control">
+                                        <option value="">Pilih Satuan</option>
+                                        @php 
+                                            $unit = ['Galon','Pack','Tube','Unit','Box','Botol']; 
+                                        @endphp
+                                        @for($i = 0;$i < count($unit);$i++)
+                                        @if($unit[$i] === $product['product_unit'])
+                                            @php $selected = 'selected'; @endphp
+                                        @else
+                                            @php $selected = ''; @endphp
+                                        @endif
+                                        <option value="{{$unit[$i]}}" {{$selected}}>{{$unit[$i]}}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-tasks"></i>
+                                        </div>
+                                        @php 
+                                            $packaging = ['Liter','Pcs','ml','gr','cm'];
+                                            $split = ['',''];
+                                            if($product['product_packaging']) {
+                                                $split = explode(" ", $product['product_packaging']);
+                                            }
+                                        @endphp
+                                        <input type="text" name="product_packaging1" class="form-control col-sm-2" value="{{$split[0]}}">
+                                        <select type="text" name="product_packaging2" class="form-control col-sm-4" >
+                                        <option value="">Pilih Kemasan</option>
+                                        @for($i = 0;$i < count($packaging);$i++)
+                                        @if($packaging[$i] === $split[1])
+                                            @php $selected = 'selected'; @endphp
+                                        @else
+                                            @php $selected = ''; @endphp
+                                        @endif
+                                        <option value="{{$packaging[$i]}}" {{$selected}}>{{$packaging[$i]}}</option>
+                                        @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
                                         <i class="fa fa-table"></i>
                                     </div>
                                     <input type="text" name="product_qty" class="form-control" value="{{$product['product_qty']}}" required>
@@ -141,7 +188,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-info"></i>
                                     </div>
-                                    <textarea type="text" name="product_info" class="form-control" rows="5" required>{{$product['product_info']}}</textarea>
+                                    <textarea type="text" name="product_info" class="form-control" rows="5">{{$product['product_info']}}</textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -187,7 +234,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mediummodalLabel">View Product</h5>
+                            <h5 class="modal-title" id="mediummodalLabel">Lihat Barang</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -202,15 +249,15 @@
                                             $product_supplier  = App\product::find($product['id'])->supplier()->associate(App\Supplier::find($product['supplier_id']));
                                         @endphp
                                             <tr>
-                                                <td>1. Name</td>
+                                                <td>1. Nama</td>
                                                 <td>{{$product['product_name']}}</td>
                                             </tr>
                                             <tr>
-                                                <td>2. Price</td>
-                                                <td>{{$product['product_price']}}</td>
+                                                <td>2. Harga</td>
+                                                <td>Rp. {{number_format($product['product_price'], 0, '', '.')}}</td>
                                             </tr>
                                             <tr>
-                                                <td>3. Categorie</td>
+                                                <td>3. Kategori</td>
                                                 <td>{{$product_categorie->categorie['categorie_name']}}</td>
                                             </tr>
                                             <tr>
@@ -218,11 +265,19 @@
                                                 <td>{{$product_supplier->supplier['supplier_name']}}</td>
                                             </tr>
                                             <tr>
-                                                <td>5. Qty</td>
+                                                <td>5. Satuan</td>
+                                                <td>{{$product['product_unit']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6. Kemasan</td>
+                                                <td>{{$product['product_packaging']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7. Qty</td>
                                                 <td>{{$product['product_qty']}}</td>
                                             </tr>
                                             <tr>
-                                                <td>6. Information</td>
+                                                <td>8. Informasi</td>
                                                 <td>{{$product['product_info']}}</td>
                                             </tr>
                                         </tbody>
@@ -239,7 +294,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mediummodalLabel">Create Product</h5>
+                            <h5 class="modal-title" id="mediummodalLabel">Tambah Product</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -270,7 +325,7 @@
                                             <i class="fa fa-tags"></i>
                                         </div>
                                         <select type="text" name="categorie_id" class="form-control" required>
-                                            <option value="">Select Categorie</option>
+                                            <option value="">Pilih Kategori</option>
                                             @foreach($categories as $categorie)
                                             <option value="{{$categorie['id']}}">{{$categorie['categorie_name']}}</option>
                                             @endforeach
@@ -283,10 +338,42 @@
                                             <i class="fa fa-gear"></i>
                                         </div>
                                         <select type="text" name="supplier_id" class="form-control" required>
-                                            <option value="">Select Supplier</option>
+                                            <option value="">Pilih Supplier</option>
                                             @foreach($suppliers as $supplier)
                                             <option value="{{$supplier['id']}}">{{$supplier['supplier_name']}}</option>
                                             @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa  fa-square-o"></i>
+                                        </div>
+                                        <select type="text" name="product_unit" class="form-control" >
+                                            <option value="">Pilih Satuan</option>
+                                            <option value="Galon">Galon</option>
+                                            <option value="Pack">Pack</option>
+                                            <option value="Tube">Tube</option>
+                                            <option value="Unit">Unit</option>
+                                            <option value="Box">Box</option>
+                                            <option value="Botol">Botol</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-tasks"></i>
+                                        </div>
+                                        <input type="text" name="product_packaging1" class="form-control col-sm-2" placeholder="Kemasan" >
+                                        <select type="text" name="product_packaging2" class="form-control col-sm-3" >
+                                            <option value="">Satuan Kemasan</option>
+                                            <option value="Liter">Liter</option>
+                                            <option value="Pcs">Pcs</option>
+                                            <option value="ml">ml</option>
+                                            <option value="gr">gr</option>
+                                            <option value="cm">cm</option>
                                         </select>
                                     </div>
                                 </div>
@@ -303,7 +390,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-info"></i>
                                         </div>
-                                        <textarea type="text" name="product_info" placeholder="Information" rows="5" class="form-control" required></textarea>
+                                        <textarea type="text" name="product_info" placeholder="Information" rows="5" class="form-control" ></textarea>
                                     </div>
                                 </div>
                                 <div class="form-actions form-group">
